@@ -69,15 +69,18 @@ class CopaDoMundo():
                     sorteados_chave.append(time)
 
     def separa_chaves(self):
+        sorteados_chave = self.selecoes_classificadas.copy()
         for c in range(1,9):
-            sorteados_chave = self.selecoes_classificadas.copy()
+
             chave = []
             #sorteia 4 times por chave
             while len(chave) <= 3:
                 time = choice(sorteados_chave)
                 if time not in chave:
-                    chave.append(time)
                     sorteados_chave.remove(time)
+                    chave.append(time)
+
+
             #aponta para qual self a variável chave é destinada
             if   c == 1:
                 for item in chave:
@@ -105,9 +108,27 @@ class CopaDoMundo():
                     self.chave_h.append(item)
             chave.clear()
 
+
     def partidas_chave(self):
-        return f'{self.chave_a[0]} X {self.chave_a[1]}\n' \
-              f'{self.chave_a[2]} X {self.chave_a[3]}\n'
+        lista_gols = gols = [0, 1, 2, 3, 4, 5]
+        if self.chave_a[0] in self.selecoes_fortes:
+            if self.chave_a[1] in self.selecoes_fortes:
+                #lista_gols = [0, 1, 2, 3, 4, 5]
+                gols = choices(lista_gols, weights=[0.5, 20.5, 25, 25, 10, 10])
+            elif self.chave_a[1] in self.selecoes_medios:
+                #lista_gols = [0, 1, 2, 3, 4, 5]
+                gols = choices(lista_gols, weights=[30, 30, 25, 0.5, 0.5, 0.5])
+            else:
+                #lista_gols = [0, 1, 2, 3, 4, 5]
+                gols = choices(lista_gols, weights=[0.5, 20.5, 25, 25, 10, 10])
+        elif self.chave_a[0] in self.selecoes_medios:
+            if self.chave_a[1] in self.selecoes_fortes:
+                gols = choices(lista_gols, weights=[30, 30, 25, 0.5, 0.5, 0.5])
+        else:
+            return 'fraco'
+
+        return f'{self.chave_a[0]} {gols} X {self.chave_a[1]}\n' \
+               f'{self.chave_a[2]} X {self.chave_a[3]}\n'
 
 
     def __str__(self):
