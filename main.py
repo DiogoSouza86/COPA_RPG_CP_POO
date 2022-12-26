@@ -10,6 +10,13 @@ class CopaDoMundo():
         self.selecoes_fortes = []
         self.chave_a = []
         self.chave_b = []
+        self.chave_c = []
+        self.chave_d = []
+        self.chave_e = []
+        self.chave_f = []
+        self.chave_g = []
+        self.chave_h = []
+
 
     def seleciona_32_selocoes(self):
         cup = ["França", "Inglaterra", "Brasil"]
@@ -45,7 +52,7 @@ class CopaDoMundo():
             else:
                 self.selecoes_medios.append(selecao)
 
-    def separa_chaves(self):
+    def separa_chaves2(self):
         sorteados_chave = []
         while len(self.chave_a) <= 3:
             time = choice(self.selecoes_classificadas)
@@ -61,22 +68,34 @@ class CopaDoMundo():
                     self.chave_b.append(time)
                     sorteados_chave.append(time)
 
-    def separa_chaves2(self):
-        chave = []
-        lista_chave = []
-        sorteados = []
-
+    def separa_chaves(self):
         for c in range(1,9):
+            sorteados_chave = self.selecoes_classificadas.copy()
+            chave = []
+            #sorteia 4 times por chave
+            while len(chave) <= 3:
+                time = choice(sorteados_chave)
+                if time not in chave:
+                    chave.append(time)
+                    sorteados_chave.remove(time)
+            #aponta para qual self a variável chave é destinada
+            if   c == 1:
+                self.chave_a.append(chave[:])
+            elif c == 2:
+                self.chave_b.append(chave[:])
+            elif c == 3:
+                self.chave_c.append(chave[:])
+            elif c == 4:
+                self.chave_d.append(chave[:])
+            elif c == 5:
+                self.chave_e.append(chave[:])
+            elif c == 6:
+                self.chave_f.append(chave[:])
+            elif c == 7:
+                self.chave_g.append(chave[:])
+            else:
+                self.chave_h.append(chave[:])
             chave.clear()
-            while len(chave) <=4:
-                time = choice(self.selecoes_classificadas)
-                if time not in sorteados:
-                    if time not in chave:
-                        chave.append(time)
-                        sorteados.append(time)
-
-
-
 
 
 
@@ -85,7 +104,10 @@ class CopaDoMundo():
         return f'COPA DO MUNDO NIGHT CITY\n' \
                f'As seleções classificadas para a copa foram:\n{self.selecoes_classificadas}\n' \
                f'\nAs seleções consideradas:\nFracas: {self.selecoes_fracos}\nMedias: {self.selecoes_medios}\nFortes: {self.selecoes_fortes}\n' \
-               f'\nCHAVES\nChave A\n{self.chave_a}\nChave B\n{self.chave_b}' \
+               f'\nCHAVES\nChave A\n{self.chave_a}\nChave B\n{self.chave_b}\nChave C\n{self.chave_c}\nChave D\n{self.chave_d}\n' \
+               f'Chave E\n{self.chave_e}\nChave F\n{self.chave_f}\nChave G\n{self.chave_g}\nChave H\n{self.chave_h}\n' \
+               f'\nFASE DE GRUPOS\n' \
+               f'' \
 
 
 
