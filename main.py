@@ -80,24 +80,34 @@ class CopaDoMundo():
                     sorteados_chave.remove(time)
             #aponta para qual self a variável chave é destinada
             if   c == 1:
-                self.chave_a.append(chave[:])
+                for item in chave:
+                    self.chave_a.append(item)
             elif c == 2:
-                self.chave_b.append(chave[:])
+                for item in chave:
+                    self.chave_b.append(item)
             elif c == 3:
-                self.chave_c.append(chave[:])
+                for item in chave:
+                    self.chave_c.append(item)
             elif c == 4:
-                self.chave_d.append(chave[:])
+                for item in chave:
+                    self.chave_d.append(item)
             elif c == 5:
-                self.chave_e.append(chave[:])
+                for item in chave:
+                    self.chave_e.append(item)
             elif c == 6:
-                self.chave_f.append(chave[:])
+                for item in chave:
+                    self.chave_f.append(item)
             elif c == 7:
-                self.chave_g.append(chave[:])
+                for item in chave:
+                    self.chave_g.append(item)
             else:
-                self.chave_h.append(chave[:])
+                for item in chave:
+                    self.chave_h.append(item)
             chave.clear()
 
-
+    def partidas_chave(self):
+        return f'{self.chave_a[0]} X {self.chave_a[1]}\n' \
+              f'{self.chave_a[2]} X {self.chave_a[3]}\n'
 
 
     def __str__(self):
@@ -123,3 +133,4 @@ copa.set_ordena_32_selecoes()
 copa.mede_forca_selecoes()
 copa.separa_chaves()
 print(copa)
+print(copa.partidas_chave())
